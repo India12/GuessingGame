@@ -42,13 +42,13 @@ class MainHandler(BaseHandler):
 
         if number == guess:
             message = "Congratulations, you win!"
-        elif number > guess and guess > minimum and guess < maximum:
-            again = "Sorry, your guess is to low."
-        elif number < guess and guess > minimum and guess < maximum:
+        elif guess < minimum and guess > maximum:
+            again = "Please enter a number between 1 an 50."
+        elif number < guess:
             again = "Sorry, your guess is to high."
         else:
-            again = "Please enter a number between 1 an 50."
-
+            again = "Sorry, your guess is to low."
+            
         params = {"message": message, "again": again}
 
         return self.render_template("result.html", params=params)
